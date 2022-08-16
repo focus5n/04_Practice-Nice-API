@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery Study</title>
+
+    <!-- JQuery 3.6.0 CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#document").text("Test Code in #document");
+        })
+
+        $(window).ready(function () {
+            $("#window").text("Test Code in #Window")
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $("button").on("click", function () {
+                $("img[alt='flower']").attr("src", "/example/image/img_monalisa.png");
+            })
+        })
+    </script>
+
+    <script>
+        $(function () {
+            const items = $("li");
+            $("#button").on("click", function () {
+                $("#length").text("Stocked <li> : " + items.length);
+            })
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $("#span-button").on("click", function () {
+                $("li:has(span)").text("I have <span>.");
+            })
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $("#ajax-button").click(function () {
+                $("#ajax-p").load("/example/media/jquery_ajax_data.txt");
+            })
+        })
+    </script>
+
+    <script>
+        $(function () {
+            $("#request-button").click(function () {
+                $.get("/example/media/request_ajax.php", {
+                    species: "고양이",
+                    name: "나비",
+                    age: 3
+                }, {
+                    function(data, status) {
+                        $("#request-p").html(data + "<br>" + status);
+                    }
+                });
+            })
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#post-button").click(function () {
+                $.post("/example/media/post_ajax.php", {
+                    species: "강아지",
+                    name: "똘순",
+                    age: 5
+                }, {
+                    function(data, status) {
+                        $("#post-p").html(data + "<br>" + status);
+                    }
+                }
+                );
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <p id="document">잠시 기다려 주세요!</p>
+    <p id="window">잠시 기다려 주세요!</p>
+
+    <hr>
+    <img src="/example/image/img_flower.png" alt="flower">
+    <br>
+    <button>그림을 바꿔보자!</button>
+
+    <hr>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <button id="button">How many li is here?</button>
+    <br>
+    <p id="length"></p>
+
+    <hr>
+    <ul>
+        <li>1</li>
+        <li><span>span</span></li>
+        <li>3</li>
+    </ul>
+    <button id="span-button">span button</button>
+
+    <hr>
+    <p id="ajax-p">여기에 데이터 출력함</p>
+    <button id="ajax-button">ajax</button>
+
+    <hr>
+    <p id="request-p">여기에 PHP 출력함</p>
+    <button id="request-button">request</button>
+
+    <hr>
+    <p id="post-p">여기에 post 출력함</p>
+    <button id="post-button">post</button>
+</body>
+
+</html>
